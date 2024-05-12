@@ -1,0 +1,100 @@
+format 8 
+factor on 
+
+func myfun() 
+if(#(P_upCNT)>=1)
+1
+else
+0
+end
+
+end
+
+
+
+srn ExSSE_homogeneousdeploy 
+  * == PLACE == 
+  P_dnCNT 0
+  P_upDCK 1
+  P_dnDCK 0
+  P_upVM 1
+  P_dnVM 0
+  P_upHYP 1
+  P_dnHYP 0
+  P_upPHY 1
+  P_dnPHY 0
+  P_upCNT 3
+  end
+  * == Timed Transitions == 
+  T_fCNT placedep P_upCNT 1/800 
+  T_rCNT placedep P_dnCNT 1/2 
+  T_fDCK ind 1/1500 
+  T_rDCK ind 1/(10/3600) 
+  T_fVM ind 1/2000 
+  T_rVM ind 1/3 
+  T_rHYP ind 1/3 
+  T_fHYP ind 1/3000 
+  T_rPHY ind 1/5.119315 
+  T_fPHY ind 1/38178.438333 
+  end
+  * == Immediate Transitions ==  
+  t_CNT ind 0.5 priority 10 
+  t_DCK ind 0.5 priority 10 
+  t_VM ind 0.5 priority 10 
+  t_HYP ind 0.5 priority 10 
+  end
+  * == ARC == 
+  * Input Arcs 
+  P_upCNT T_fCNT 1
+  P_dnCNT T_rCNT 1
+  P_upDCK T_fDCK 1
+  P_dnDCK T_rDCK 1
+  P_upVM T_fVM 1
+  P_dnVM T_rVM 1
+  P_upHYP T_fHYP 1
+  P_dnHYP T_rHYP 1
+  P_upPHY T_fPHY 1
+  P_dnPHY T_rPHY 1
+  P_upCNT t_CNT 1
+  P_upDCK t_DCK 1
+  P_upVM t_VM 1
+  P_upHYP t_HYP 1
+  end
+  * Output Arcs 
+  T_fCNT P_dnCNT 1
+  T_rCNT P_upCNT 1
+  T_fDCK P_dnDCK 1
+  T_rDCK P_upDCK 1
+  T_fVM P_dnVM 1
+  T_rVM P_upVM 1
+  T_rHYP P_upHYP 1
+  T_fHYP P_dnHYP 1
+  T_rPHY P_upPHY 1
+  T_fPHY P_dnPHY 1
+  t_CNT P_dnCNT 1
+  t_DCK P_dnDCK 1
+  t_VM P_dnVM 1
+  t_HYP P_dnHYP 1
+  end
+  * Inhibtor Arcs 
+  P_upDCK t_CNT 1
+  P_upVM t_DCK 1
+  P_upHYP t_VM 1
+  P_upPHY t_HYP 1
+  P_dnPHY T_rHYP 1
+  P_dnHYP T_rVM 1
+  P_dnVM T_rDCK 1
+  P_dnDCK T_rCNT 1
+end
+
+
+echo **************************************************************************** 
+echo *********  Outputs asked for the model: ExSSE_homogeneousdeploy ************** 
+
+
+echo Expected reward rate in steady-state for: myfun 
+var SS_ExpectedRewardRate srn_exrss(ExSSE_homogeneousdeploy; myfun)
+expr SS_ExpectedRewardRate
+
+
+end

@@ -1,0 +1,22 @@
+Model Name : node4
+Owner : SHARPE Project Group
+Date Created : Wed Apr 26 12:00:45 CEST 2023
+Comment : 
+
+CommentEnd
+
+SubModel : ExSSE_homogeneousdeploy
+Type : SRN Model
+
+
+Function:
+Name:myfun
+Number Parameter:0
+Body number of lines:5
+if(#(P_upCNT)>=1)
+1
+else
+0
+end
+
+
