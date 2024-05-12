@@ -1,3 +1,5 @@
+# System Safety Project
+
 I nuovi paradigmi di rete come la Network Function Virtualization (NFV) permettono di definire
 sistemi di comunicazione, in applicazioni safety-critical, attraverso strutture dinamiche come le Service
 Function Chain (SFC), ovvero reti di nodi virtualizzati collegati in serie. In questo progetto si prende
